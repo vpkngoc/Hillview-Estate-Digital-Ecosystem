@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* Brand tokens — sampled from Team 4E's Canva deck (forest/ivory/leaf) plus the
+   Education Hub slide accents (ochre, sage, slate). Confirm against brand kit (Q12). */
+@theme {
+  --color-forest: #0C3314;
+  --color-forest-deep: #07130A;
+  --color-moss: #2F5A2E;
+  --color-leaf: #7CC242;
+  --color-leaf-dark: #4E8A1F;
+  --color-cream: #F7F4EC;
+  --color-parchment: #EDE7D8;
+  --color-stone: #D9D2C1;
+  --color-ochre: #B5733A;
+  --color-ochre-light: #E9CDA9;
+  --color-sage: #8FAF7E;
+  --color-slate: #5F7F96;
+  --color-ink: #1B241C;
+  --color-muted: #5C665D;
+  --color-alert: #A63D2F;
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root { color-scheme: light; }
+html, body { background: var(--color-cream); color: var(--color-ink); }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, .serif { font-family: var(--font-serif); letter-spacing: -0.01em; }
+:focus-visible { outline: 2px solid var(--color-leaf-dark); outline-offset: 2px; }
+.tabular { font-variant-numeric: tabular-nums; }
+.leaf-pattern {
+  background-image: radial-gradient(circle at 20% 20%, rgba(124,194,66,.10), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(124,194,66,.08), transparent 35%);
+}
