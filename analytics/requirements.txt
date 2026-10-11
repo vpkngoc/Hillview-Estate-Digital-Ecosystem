@@ -1,3 +1,5 @@
 numpy>=1.26
 pandas>=2.1
 statsmodels>=0.14
+matplotlib>=3.8
+playwright>=1.45  # diagrams only: run 'playwright install chromium' once
