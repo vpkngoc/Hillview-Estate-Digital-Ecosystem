@@ -33,14 +33,14 @@ ASSUMPTIONS = [
     dict(id="A-05", area="Pricing", item="Schools programme price per student", value="$28–$35 (day), $165 (3-day, no accommodation)",
          owner="Finance / Education", basis="Placeholder; typical NSW excursion range — confirm against school budget norms.",
          confidence="Low"),
-    dict(id="A-06", area="Pricing", item="Wedding venue fee", value="$12,000 peak Sat / $9,500 off-peak; intimate $4,500",
-         owner="Finance", basis="Placeholder; venue-hire only, catering via preferred suppliers.", confidence="Low"),
+    dict(id="A-06", area="Pricing", item="Wedding venue fee", value="$6,000 exclusive full-day hire; $1,800 garden ceremony session",
+         owner="Finance", basis="Finance chapter: $6,000 anchored on National Trust Harper's Mansion, Berrima ($1,500 garden ceremony alone) and Southern Highlands venues at ~$1,500–$2,000 per session (Tagvenue). Ceremony-session price set by Analytics inside that range.", confidence="Medium"),
     dict(id="A-07", area="Pricing", item="Corporate packages", value="$95 pp day delegate; $260 pp retreat + workshop",
          owner="Finance", basis="Placeholder.", confidence="Low"),
     dict(id="A-08", area="Membership", item="Friends of Hillview tiers (annual, GST incl.)",
-         value="Friend $75 · Household $130 · Supporter $350 · Patron Circle $1,500",
-         owner="Marketing / Finance", basis="Placeholder. Revisit with Marketing's segmentation and Finance's model.",
-         confidence="Low"),
+         value="Friend $90 · Household $130 · Supporter $350 · Patron Circle $1,500",
+         owner="Marketing / Finance", basis="Finance chapter: $90 single membership, between Museums of History NSW's $75 single and $135 dual. Household, Supporter and Patron tiers remain platform placeholders for Marketing to confirm.",
+         confidence="Medium"),
     dict(id="A-09", area="Membership", item="Member benefit rule",
          value="Priority booking (14 days), 15% off tours/workshops/courses, member-only events. NO free entry to paid events.",
          owner="Marketing", basis="Team decision to avoid revenue cannibalisation — deck slides still say free festival entry; update the deck.",
@@ -67,7 +67,7 @@ ASSUMPTIONS = [
          owner="Analytics", basis="Judgement-based; the model re-estimates these once real check-in data exists.", confidence="Low"),
     dict(id="A-17", area="Demand", item="Registration rate of grounds visitors", value="40% of parties register with email",
          owner="Analytics", basis="Assumption — free registration is optional.", confidence="Low"),
-    dict(id="A-18", area="Finance", item="Year 1 revenue plan by stream", value="See Console > Overview (total ≈ $925k, GST incl.)",
+    dict(id="A-18", area="Finance", item="Year 1 revenue plan by stream", value="See Console > Overview. Finance's ten-year model gives Year 5 revenue of $987k (nine streams, $59k–$169k each); Year 1 by-stream figures still to be transferred",
          owner="Finance", basis="Placeholder targets so the dashboard can show actual vs plan. Must be replaced by Finance chapter numbers.",
          confidence="Low"),
     # Tax / legal -------------------------------------------------------------
@@ -84,6 +84,19 @@ ASSUMPTIONS = [
          confidence="Medium"),
     dict(id="A-22", area="Data", item="All supporters, bookings and gifts", value="Synthetic (seeded random generation)",
          owner="Analytics", basis="Demo only. Names are fictional; emails use the reserved example.com domain.", confidence="High"),
+    dict(id="A-24", area="Finance", item="Return hurdle and discount rate", value="3% (higher of 3% and Australian GDP growth)",
+         owner="Finance", basis="ABS: real GDP grew 2.1% in the year to the June quarter 2026, so 3% binds (Finance chapter).", confidence="High"),
+    dict(id="A-25", area="Finance", item="Endowment allocation ($1M)", value="Media 35% ($350k) · Digital platform 25% ($250k) · Events 20% ($200k) · Schools 20% ($200k)",
+         owner="Team / Finance", basis="Team decision; 30% spent in Year 0 and 75% by end of Year 2, media and platform front-loaded (Finance chapter).", confidence="Medium"),
+    dict(id="A-26", area="Finance", item="Price escalation", value="3% a year", owner="Finance",
+         basis="Set slightly below the 3.5% annual CPI reading for July 2026 (Finance chapter).", confidence="Medium"),
+    dict(id="A-27", area="Finance", item="Heritage grants", value="Excluded from base case; $50k (Yr 1) + $150k (Yr 2) shown as upside",
+         owner="Finance / Law", basis="NSW Caring for State Heritage 2025–27: up to $50k for a management document, up to $300k for works; competitive and restricted to conservation. Including it lifts 10-yr IRR from 20.7% to 26.1%.", confidence="Low"),
+    dict(id="A-28", area="Finance", item="Weddings per year", value="≈12 in Year 1 (simulated), ramping to 25 by Year 5",
+         owner="Finance / Analytics", basis="Finance names 25 weddings a year by Year 5 as the weakest single assumption; the simulation's Year 1 launch rate is an Analytics assumption.", confidence="Low"),
+    dict(id="A-29", area="Marketing", item="Target segments and KPIs", value="Domestic heritage tourists · Schools · Local residents & donors; KPIs: booking conversion, CPA, renewal rate, donation revenue",
+         owner="Marketing", basis="Marketing chapter (STP and KPI table). Website visits and CPA need GA4 and spend data the prototype does not hold.", confidence="Medium"),
+
 ]
 
 # ---------------------------------------------------------------------------
@@ -177,10 +190,10 @@ SCHOOL_PROGRAMMES = [
 # Venue hire packages (premium tier)
 # ---------------------------------------------------------------------------
 VENUE_PACKAGES = [
-    dict(id="v-wedding", name="Garden Ceremony & House Reception", kind="Wedding", from_price=9500, peak_price=12000,
+    dict(id="v-wedding", name="Exclusive Full-Day Hire: Ceremony & Reception", kind="Wedding", from_price=6000, peak_price=6000,
          guests="up to 120", unit="venue fee", blurb="Ceremony under the elms, reception in the house and courtyard."),
-    dict(id="v-intimate", name="Intimate Rose Garden Wedding", kind="Wedding", from_price=4500, peak_price=4500,
-         guests="up to 40", unit="venue fee", blurb="A small ceremony and long lunch in the rose garden."),
+    dict(id="v-intimate", name="Rose Garden Ceremony (session)", kind="Wedding", from_price=1800, peak_price=1800,
+         guests="up to 40", unit="venue fee", blurb="A ceremony session in the fan-shaped rose garden."),
     dict(id="v-dayDelegate", name="Corporate Day Delegate", kind="Corporate", from_price=95, peak_price=95,
          guests="15–60", unit="per person", blurb="Meeting rooms, catering and a garden walk."),
     dict(id="v-retreat", name="Leadership Retreat + Craft Workshop", kind="Corporate", from_price=260, peak_price=260,
@@ -195,7 +208,7 @@ SPACES = ["Main House", "Gardens & Lawn", "Stables Courtyard"]
 # Friends of Hillview membership
 # ---------------------------------------------------------------------------
 MEMBERSHIP_TIERS = [
-    dict(id="friend", name="Friend", price=75,
+    dict(id="friend", name="Friend", price=90,
          benefits=["14-day priority booking", "15% off tours, workshops & courses", "Friends' preview evenings", "Restoration newsletter"]),
     dict(id="household", name="Household Friend", price=130,
          benefits=["Everything in Friend for 2 adults + children under 16", "Family activity days"]),
@@ -253,3 +266,28 @@ REVENUE_PLAN_Y1 = {
     "Donations": 140_000,
     "Adopt-a-Stone": 50_000,
 }
+
+
+# ---------------------------------------------------------------------------
+# Finance chapter base case (reference values shown in the Console; A-24 to A-28)
+# ---------------------------------------------------------------------------
+FINANCE = dict(
+    hurdle=0.03, gdpGrowth=0.021, priceEscalation=0.03,
+    allocation=[dict(item="Media & awareness", share=0.35), dict(item="Digital platform", share=0.25),
+                dict(item="Events & programming", share=0.20), dict(item="Schools programme", share=0.20)],
+    results=[dict(measure="NPV at 3%, Years 0–5", value="($209,000)"), dict(measure="IRR, Years 0–5", value="(6.5%)"),
+             dict(measure="NPV at 3%, Years 0–10", value="$1,123,000"), dict(measure="IRR, Years 0–10", value="20.7%"),
+             dict(measure="First operating surplus", value="Year 2"), dict(measure="Payback (cumulative cash positive)", value="Year 6"),
+             dict(measure="Year 5 revenue", value="$987,000"), dict(measure="Year 5 operating surplus", value="$353,000")],
+    breakEven="Revenue can fall ~30% below base case before the 10-year IRR drops under 3%",
+    gate="Year 2 decision gate: if cumulative revenue < 70% of plan, move remaining media and events budget to the best-performing stream",
+    platformRisk="A 50% overrun on the $250k platform cuts NPV by $172k; a 100% overrun still leaves IRR at 14.0%",
+)
+
+# ---------------------------------------------------------------------------
+# Marketing chapter: segments and KPI table (A-29)
+# ---------------------------------------------------------------------------
+MARKETING = dict(
+    segments=["Domestic heritage tourists", "Schools", "Local residents & donors"],
+    mediaBudget=350_000,
+)

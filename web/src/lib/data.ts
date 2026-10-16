@@ -17,10 +17,16 @@ export interface Assumption { id: string; area: string; item: string; value: str
 export interface Source { id: string; name: string; url: string }
 export interface Session { id: string; ref: string; date: string; time: string; capacity: number; booked: number }
 
+export interface FinanceRef {
+  hurdle: number; gdpGrowth: number; priceEscalation: number
+  allocation: { item: string; share: number }[]; results: { measure: string; value: string }[]
+  breakEven: string; gate: string; platformRisk: string
+}
+
 export interface Catalogue {
   gstRate: number; experiences: Experience[]; events: EventItem[]; courses: Course[]; schoolProgrammes: SchoolProgramme[]
   venuePackages: VenuePackage[]; spaces: string[]; membershipTiers: Tier[]; funds: Fund[]; elements: AdoptElement[]
-  revenuePlan: Record<string, number>; assumptions: Assumption[]; sources: Source[]; demoToday: string; simStart: string; simEnd: string
+  revenuePlan: Record<string, number>; finance?: FinanceRef; marketing?: { segments: string[]; mediaBudget: number }; assumptions: Assumption[]; sources: Source[]; demoToday: string; simStart: string; simEnd: string
 }
 
 export interface ForecastDay { date: string; dow: string; expected: number; lo80: number; hi80: number; schoolHoliday: boolean; publicHoliday: boolean; regionalEvent: string | null; rainChance: number; climTmax: number; guides: number; frontOfHouse: number }

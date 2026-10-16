@@ -345,7 +345,7 @@ def simulate_world(daily):
     venue = []
     for d in daterange(START, END):
         peak = d.month in (10, 11, 12, 1, 2, 3, 4)
-        if d.weekday() == 5 and rng.random() < (.68 if peak else .30):
+        if d.weekday() == 5 and rng.random() < (.30 if peak else .12):  # launch year, A-28
             pk = C.VENUE_PACKAGES[0] if rng.random() < .75 else C.VENUE_PACKAGES[1]
             amt = pk["peak_price"] if peak else pk["from_price"]
             venue.append((d, pk, amt, "Main House"))

@@ -71,6 +71,51 @@ function Overview({ masked }: { masked: boolean }) {
         <Stat label="GST collected" value={aud(gst)} sub="1/11 of taxable sales" flag="A-19" />
       </div>
 
+      {catalogue.finance && catalogue.marketing && (
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="text-xl font-semibold text-forest">Finance base case (ten-year model) <Flag id="A-24" /></h3>
+              <span className="text-xs text-muted">Reference values from the Finance chapter</span>
+            </div>
+            <p className="mt-1 text-sm text-muted">Hurdle {pct(catalogue.finance.hurdle * 100)}: the higher of 3% and real GDP growth ({(catalogue.finance.gdpGrowth * 100).toFixed(1)}%, ABS, year to June quarter 2026). Grants excluded from the base case <Flag id="A-27" />.</p>
+            <table className="mt-3 w-full text-sm">
+              <tbody className="divide-y divide-stone/60">
+                {catalogue.finance.results.map(r => (
+                  <tr key={r.measure}><td className="py-1.5 text-ink">{r.measure}</td><td className="py-1.5 text-right font-semibold tabular text-forest">{r.value}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="mt-3 flex flex-wrap gap-2 text-xs">
+              {catalogue.finance.allocation.map(a => <Badge key={a.item} tone={a.item === 'Digital platform' ? 'ochre' : undefined}>{a.item} {Math.round(a.share * 100)}% · {aud(a.share * 1_000_000)}</Badge>)}
+              <Flag id="A-25" />
+            </div>
+            <ul className="mt-3 space-y-1 text-xs text-muted">
+              <li>{catalogue.finance.breakEven}.</li>
+              <li>{catalogue.finance.platformRisk}.</li>
+              <li>{catalogue.finance.gate}.</li>
+            </ul>
+          </Card>
+          <Card>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="text-xl font-semibold text-forest">Marketing KPIs, measured from the supporter record <Flag id="A-29" /></h3>
+              <span className="text-xs text-muted">KPI set from the Marketing chapter</span>
+            </div>
+            <table className="mt-3 w-full text-sm">
+              <thead><tr className="text-left text-xs text-muted"><th className="py-1">Objective · KPI</th><th className="py-1 text-right">Year 1 (synthetic)</th></tr></thead>
+              <tbody className="divide-y divide-stone/60">
+                <tr><td className="py-1.5">Attract paying visitors · booking conversion</td><td className="py-1.5 text-right font-semibold tabular text-forest">{pct((analytics.funnel[1].reached / analytics.funnel[0].reached) * 100)}</td></tr>
+                <tr><td className="py-1.5">Generate financial support · donation revenue</td><td className="py-1.5 text-right font-semibold tabular text-forest">{aud(analytics.kpis.totalGiving)}</td></tr>
+                <tr><td className="py-1.5">Build loyalty · membership renewal rate</td><td className="py-1.5 text-right text-muted">first renewals due Year 2</td></tr>
+                <tr><td className="py-1.5">Control acquisition costs · CPA</td><td className="py-1.5 text-right text-muted">needs media spend actuals</td></tr>
+                <tr><td className="py-1.5">Increase awareness · website visits</td><td className="py-1.5 text-right text-muted">GA4, outside prototype</td></tr>
+              </tbody>
+            </table>
+            <p className="mt-3 text-xs text-muted">Target segments: {catalogue.marketing.segments.join(' · ')}. Media budget {aud(catalogue.marketing.mediaBudget)} over five years, released in phases against these KPIs.</p>
+          </Card>
+        </div>
+      )}
+
       <Card>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h3 className="text-xl font-semibold text-forest">The revenue loop: where supporters drop off</h3>

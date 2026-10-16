@@ -172,7 +172,7 @@ def fig_3_4():
 def fig_3_5():
     seg = {s["segment"]: s for s in A["segments"]}
     plan = [  # priority order = the Development Officer's call order
-        ("At risk", "Call personally now: high value, but fading"),
+        ("At risk", "Call personally now: high value, fading"),
         ("Champions", "Thank, then invite to upgrade or adopt a stone"),
         ("Loyal supporters", "Renewals and member-only events"),
         ("Needs attention", "Targeted what's-on from past bookings"),
@@ -181,8 +181,8 @@ def fig_3_5():
     ]
     fig = plt.figure(figsize=(7.4, 4.6))
     frame(fig, "RFM segments turn 5,089 supporters into six actions",
-          "Each bubble is a segment (area = number of supporters). The 'At risk' group is worth the most per person\n"
-          "but has gone quiet, so it heads the Development Officer's call list.")
+          f"Each bubble is a segment (area = number of supporters). 'At risk' supporters average ${seg['At risk']['avgValue']:,.0f},\n"
+          f"close to the top segment, but have been quiet for ~{seg['At risk']['avgRecency']:.0f} days, so they head the Development Officer's call list.")
     ax = fig.add_axes([0.10, 0.17, 0.50, 0.57])
     for k, (name, _) in enumerate(plan, start=1):
         s = seg[name]

@@ -97,7 +97,7 @@ def main():
         gstRate=C.GST_RATE, experiences=C.EXPERIENCES, events=C.EVENTS, courses=C.COURSES,
         schoolProgrammes=C.SCHOOL_PROGRAMMES, venuePackages=C.VENUE_PACKAGES, spaces=C.SPACES,
         membershipTiers=C.MEMBERSHIP_TIERS, funds=C.FUNDS, elements=elements,
-        revenuePlan=C.REVENUE_PLAN_Y1, assumptions=C.ASSUMPTIONS, sources=R.SOURCES,
+        revenuePlan=C.REVENUE_PLAN_Y1, finance=C.FINANCE, marketing=C.MARKETING, assumptions=C.ASSUMPTIONS, sources=R.SOURCES,
         demoToday=S.DEMO_TODAY.isoformat(), simStart=S.START.isoformat(), simEnd=S.END.isoformat(),
     )
     dump("catalogue.json", catalogue)
