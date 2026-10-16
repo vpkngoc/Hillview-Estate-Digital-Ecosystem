@@ -43,7 +43,7 @@ Ten figures, 2220 px wide (16 cm at 300 dpi + margin). Insert each as a **pictur
 - **AI critique:** the first funnel metric (AI-scaffolded) reported >100% conversion; it was caught and replaced (decision log D-09).
 
 **3.5 RFM.**
-- **Evidence:** "At risk" is 662 supporters at $415 average, the highest value per person, quiet for ~253 days, so they are called first. "Hibernating" is 1,055 supporters at $13, so low-cost email only, and only where consented.
+- **Evidence:** "At risk" is 659 supporters at $234 average, close to the top segment, quiet for ~253 days, so they are called first. "Hibernating" is 1,054 supporters at $13, so low-cost email only, and only where consented. (Updated after Finance's $6,000 venue fee lowered venue-client spend.)
 - **But:** RFM scores are quintile-relative and blind to mission value (a 200-hour volunteer scores low on M).
 - **Why RFM:** chosen over CLV models (need years of repeat history) and k-means (unstable, hard for a small team to act on).
 
@@ -62,7 +62,7 @@ Ten figures, 2220 px wide (16 cm at 300 dpi + margin). Insert each as a **pictur
 **3.9 Privacy by design.** The role matrix mirrors the organisation's departments: the same negotiation over "who needs to see what" that the team had. The three separated domains follow decisions D-06 and D-07. The APP mapping is yours; cite the Law & Cybersecurity chapter for the legal analysis.
 
 **3.10 Assumptions register.**
-- **Evidence:** 17 of 23 assumptions are low-confidence; 10 of those sit with Finance (prices, appeal target, revenue plan).
+- **Evidence:** 17 of 29 assumptions are low-confidence after integrating Chapters 2 and 5–6; Finance's benchmarks moved membership ($90) and venue hire ($6,000) from low to medium.
 - **Teamwork:** the register works as an interface contract between departments: every number has an owner and a confidence rating.
 - **Position:** this is how the plan turns "we can't know yet" into managed uncertainty.
 
