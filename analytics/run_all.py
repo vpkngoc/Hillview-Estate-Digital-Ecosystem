@@ -43,7 +43,7 @@ def _clean(o):
 
 def dump(name, obj):
     path = OUT / name
-    path.write_text(json.dumps(_clean(obj), separators=(",", ":"), ensure_ascii=False, default=str, allow_nan=False))
+    path.write_text(json.dumps(_clean(obj), separators=(",", ":"), ensure_ascii=False, default=str, allow_nan=False), encoding="utf-8")
     print(f"  wrote {path.name:<18} {path.stat().st_size / 1024:8.1f} KB")
 
 
@@ -55,7 +55,7 @@ def write_assumptions_md():
         lines.append(f"| {a['id']} | {a['area']} | {a['item']} | {a['value']} | {a['owner']} | {a['confidence']} | {a['basis']} |")
     lines += ["", "## Real reference data", ""] + [f"- {x['id']}: [{x['name']}]({x['url']})" for x in R.SOURCES]
     p = Path(__file__).resolve().parent.parent / "docs" / "ASSUMPTIONS_REGISTER.md"
-    p.write_text("\n".join(lines) + "\n")
+    p.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"  wrote {p.name}")
 
 

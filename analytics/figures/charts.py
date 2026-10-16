@@ -83,7 +83,7 @@ def save(fig, name):
 
 
 def load(name):
-    return json.loads((DATA / name).read_text())
+    return json.loads((DATA / name).read_text(encoding="utf-8"))
 
 
 A = load("analytics.json")
@@ -266,7 +266,7 @@ def fig_3_6():
 
 # ---------------------------------------------------------------- 3.7 driver effects / parameter recovery
 def true_effects():
-    src = (ROOT / "analytics" / "simulate.py").read_text()
+    src = (ROOT / "analytics" / "simulate.py").read_text(encoding="utf-8")
     m = re.search(r"TRUE_EFFECTS = dict\((.*?)\)", src, re.S)
     return {k: float(v) for k, v in re.findall(r"(\w+)=([\d.]+)", m.group(1))}
 
@@ -364,7 +364,7 @@ def fig_3_8():
 # ---------------------------------------------------------------- 3.10 assumptions confidence
 def fig_3_10():
     rows = []
-    for line in (ROOT / "docs" / "ASSUMPTIONS_REGISTER.md").read_text().splitlines():
+    for line in (ROOT / "docs" / "ASSUMPTIONS_REGISTER.md").read_text(encoding="utf-8").splitlines():
         if line.startswith("| A-"):
             c = [x.strip() for x in line.strip("|").split("|")]
             rows.append(dict(id=c[0], area=c[1], owner=c[4].split("/")[0].strip(), conf=c[5]))
